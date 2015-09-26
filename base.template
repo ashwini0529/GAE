@@ -1,0 +1,10 @@
+<doctype html>
+<html>
+<title>Intro to GAE</title>
+<body>
+<h3>Hey everyone...</h3>
+
+{% block content %}
+{% endblock %}
+</body>
+<html>

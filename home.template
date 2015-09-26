@@ -1,0 +1,10 @@
+{%extends "base.template"%}
+{%block content %}
+
+<!-- Home container -->
+
+<div name = "div1">
+<h4>This is my Home content Heading 4...</h4>
+</div>
+
+{%endblock%}
