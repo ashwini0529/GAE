@@ -17,6 +17,8 @@
 import webapp2
 import cgi
 from google.appengine.api import users
+from gaesessions import get_current_session
+
 html  = """
 	<html>
 	<title>ACM GAE</title>
@@ -24,6 +26,7 @@ html  = """
 	<p>Hello how are you? Welcome to the app engine workshop! </p>
 	<p> I hope everything is going awesome! </p>
 	<p> to sign in click <a href = "/sign">here</a> </p>
+	<p> Page Count : %d <p>
 	</html>
 
 
@@ -44,7 +47,10 @@ signInHtml = """
 """
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write(html)
+    	session = get_current_session()
+    	count= session.get('count' , 0)
+    	session['count'] = count+1
+        self.response.write(html % session['count'])
 class signIn(webapp2.RequestHandler):
 	def get(self):
 		self.response.write(signInHtml)
