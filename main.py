@@ -50,12 +50,15 @@ class signIn(webapp2.RequestHandler):
 		self.response.write(signInHtml)
 class displayValues(webapp2.RequestHandler):
 	def post(self):
-		self.response.write('<html><body><h3>You wrote : </h3>')
-		self.response.write('<h4>Username  : ')
-		self.response.write(cgi.escape(self.request.get('username')))
-		self.response.write('</h4><h4>Password  : ')	
-		self.response.write(cgi.escape(self.request.get('password')))
-		self.response.write('</h4></body></html>')
+		if(cgi.escape(self.request.get('username'))) != "":
+			self.response.write('<html><body><h3>You wrote : </h3>')
+			self.response.write('<h4>Username  : ')
+			self.response.write(cgi.escape(self.request.get('username')))
+			self.response.write('</h4><h4>Password  : ')	
+			self.response.write(cgi.escape(self.request.get('password')))
+			self.response.write('</h4></body></html>')
+		else:
+			self.response.write('Empty username')
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/sign', signIn),
